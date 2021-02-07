@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <!-- charset을 등록하지 않은 경우 웹페이지에 해당 이모지가 정상적으로 호출되지 않을 수 있다. -->
+    <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width">
     <title>repl.it</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
@@ -10,11 +11,19 @@
     <div class="js-clock">
         <h1>00:00</h1>
     </div>
+
     <form class="js-form form">
       <input type="text" placeholder="What is your name?"/>
     </form>
+
     <h4 class="js-greetings greetings"></h4>
+    
+    <form class="js-toDoForm">
+      <input type="text" placeholder="Write a to do"/>
+    </form>
+    <ul class="js-toDoList"></ul>
     <script src="clock.js"></script>
     <script src="greeting.js"></script>
+    <script src="todo.js"></script>
   </body>
 </html>
