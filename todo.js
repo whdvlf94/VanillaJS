@@ -1,10 +1,35 @@
 const toDoForm = document.querySelector(".js-toDoForm"),
+  toDoInput = toDoForm.querySelector("input"),
+  toDoList = document.querySelector(".js-toDoList");
+
+const TODOS_LS = 'toDos';
+
+
+let toDos = [];
+
+function deleteToDo(event) {
+  //button의 id 값을 호출
+  // console.log(event.target.parentNode); 
+
+  const btn = event.target
+  const li = btn.parentNode;
+  toDoList.removeChild(li); //button 클릭 시 삭제
+  const cleanToDos = toDos.filter(function (toDo) {
+    //li.id 는 string 이므로 int로 변환해준다.
+    return toDo.id !== parseInt(li.id);
+  });
+  toDos = cleanToDos;
+  console.log(toDos);
+  saveToDos();
+}
+
       toDoInput = toDoForm.querySelector("input"),
       toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = 'toDos';
 
 const toDos = [];
+
 
 //toDolist를 localStorage에 저장하기 위함
 function saveToDos() {
@@ -19,6 +44,8 @@ function paintToDo(text) {
   const span = document.createElement("span"); //span 생성
   const newId = toDos.length + 1;
   delBtn.innerText = "️️🍕";
+
+  delBtn.addEventListener("click", deleteToDo); // 로고를 클릭할 경우 이벤트 발생
   span.innerText = text;
 
   //button, span을 li 태그 안에 삽입
@@ -47,6 +74,20 @@ function handleSubmit(event) {
 
 function loadToDos() {
   const loadedToDos = localStorage.getItem(TODOS_LS);
+  if (loadedToDos !== null) {
+    const parsedToDos = JSON.parse(loadedToDos);
+
+    // forEach 문
+    parsedToDos.forEach(function (toDo) {
+      paintToDo(toDo.text)
+    })
+    console.log(parsedToDos)
+  }
+}
+
+function init() {
+  loadToDos();
+  toDoForm.addEventListener("submit", handleSubmit)
   if(loadedToDos !== null) {
       const parsedToDos = JSON.parse(loadedToDos);
 
