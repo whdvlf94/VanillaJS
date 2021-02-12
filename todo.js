@@ -1,4 +1,5 @@
 const toDoForm = document.querySelector(".js-toDoForm"),
+<<<<<<< HEAD
   toDoInput = toDoForm.querySelector("input"),
   toDoList = document.querySelector(".js-toDoList");
 
@@ -22,12 +23,24 @@ function deleteToDo(event) {
   console.log(toDos);
   saveToDos();
 }
+=======
+      toDoInput = toDoForm.querySelector("input"),
+      toDoList = document.querySelector(".js-toDoList");
+
+const TODOS_LS = 'toDos';
+
+const toDos = [];
+>>>>>>> origin/master
 
 //toDolist를 localStorage에 저장하기 위함
 function saveToDos() {
   //JS는 localStorage에 String 형태로 저장하기 때문에
   //JSON.stringify 형태로 저장
+<<<<<<< HEAD
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos))
+=======
+  localStorage.setItem(TODOS_LS,JSON.stringify(toDos))
+>>>>>>> origin/master
 }
 
 function paintToDo(text) {
@@ -36,7 +49,10 @@ function paintToDo(text) {
   const span = document.createElement("span"); //span 생성
   const newId = toDos.length + 1;
   delBtn.innerText = "️️🍕";
+<<<<<<< HEAD
   delBtn.addEventListener("click", deleteToDo); // 로고를 클릭할 경우 이벤트 발생
+=======
+>>>>>>> origin/master
   span.innerText = text;
 
   //button, span을 li 태그 안에 삽입
@@ -47,8 +63,13 @@ function paintToDo(text) {
 
   //toDoList 값들을 Array에 저장
   const toDoObj = {
+<<<<<<< HEAD
     text: text,
     id: toDos.length + 1
+=======
+      text: text,
+      id: toDos.length + 1
+>>>>>>> origin/master
   };
   toDos.push(toDoObj);
   saveToDos();
@@ -57,7 +78,10 @@ function paintToDo(text) {
 
 function handleSubmit(event) {
   event.preventDefault();
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
   const currentValue = toDoInput.value;
   paintToDo(currentValue);
   toDoInput.value = "";
@@ -66,6 +90,7 @@ function handleSubmit(event) {
 
 function loadToDos() {
   const loadedToDos = localStorage.getItem(TODOS_LS);
+<<<<<<< HEAD
   if (loadedToDos !== null) {
     const parsedToDos = JSON.parse(loadedToDos);
 
@@ -80,6 +105,22 @@ function loadToDos() {
 function init() {
   loadToDos();
   toDoForm.addEventListener("submit", handleSubmit)
+=======
+  if(loadedToDos !== null) {
+      const parsedToDos = JSON.parse(loadedToDos);
+
+      //forEach 문
+      parsedToDos.forEach(function(toDo){
+        paintToDo(toDo.text)
+      })
+      console.log(parsedToDos)
+  } 
+}
+
+function init() {
+    loadToDos();
+    toDoForm.addEventListener("submit",handleSubmit)
+>>>>>>> origin/master
 }
 
 init();
