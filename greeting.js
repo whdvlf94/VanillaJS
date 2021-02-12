@@ -25,7 +25,6 @@ function askForName() {
 function paintGreeting(text){
   form.classList.remove(SHOWING_CN); //form 삭제
   greeting.classList.add(SHOWING_CN)
-  console.log(greeting.classList)
   greeting.innerText = `Hello ${text}`
 
 }
